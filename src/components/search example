@@ -1,0 +1,46 @@
+import React, { useState } from 'react';
+
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const items = ['box1', 'box2', 'box3', 'box4', 'box5'];
+
+  const handleSearch = () => {
+    // Implement your search logic here
+    // For simplicity, let's filter items that include the search term
+    const searchResults = items.filter(item => item.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    // You can update the state or perform other actions with the search results
+    console.log('Search results:', searchResults);
+  };
+
+  return (
+    <div className="flex items-center space-x-2">
+      <input
+        type="text"
+        placeholder="Search..."
+        className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none"
+        onClick={handleSearch}
+      >
+        Search
+      </button>
+
+      {/* Display search results */}
+      <div className="mt-4">
+        {items
+          .filter(item => item.toLowerCase().includes(searchTerm.toLowerCase()))
+          .map((item, index) => (
+            <div key={index} className="bg-gray-200 p-2 rounded-md mb-2">
+              {item}
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+};
+
+export default SearchBar;
