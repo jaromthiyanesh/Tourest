@@ -22,11 +22,11 @@ const Personalized = () => {
                                             Benefit from personalized services and itineraries designed to cater to your individual preferences and needs.
                                             Tailored itineraries, unique experiences, and unforgettable memories just for you.
                                         </p>
-                                       <div className='space-x-12 space-y-6'>
-                                       <button className='bg-blue-600 text-white px-8 py-3 rounded-full transform hover:scale-110 transition-transform duration-300 hover:bg-red-600 hover:text-white'>
+                                       <div className='space-x-8 flex flex-row justify-start items-start'>
+                                       <button className='bg-blue-600 text-white px-6 py-3 rounded-full transform hover:scale-110 transition-transform duration-300 hover:bg-red-600 hover:text-white'>
                                         Explore Packages
                                         </button>
-                                        <button className='bg-blue-600 text-white px-8 py-3 rounded-full transform hover:scale-110 transition-transform duration-300 hover:bg-red-600 hover:text-white'>
+                                        <button className='bg-blue-600 text-white px-6 py-3 rounded-full transform hover:scale-110 transition-transform duration-300 hover:bg-red-600 hover:text-white'>
                                         Book Now
                                         </button>
                                        </div>

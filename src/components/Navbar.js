@@ -1,28 +1,87 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
-  return (
-    <nav className=' h-20 '>
-      <div className='container mx-auto' >
-        <div className='w-[90%] mx-auto  grid grid-cols-1  lg:grid-cols-2 2xl:grid-cols-2  '>
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
-          <div className='  h-20 flex flex-col justify-center'>
-            <h1 className='font-bold text-5xl  text-blue-950'>Tourest</h1>
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const shouldBeSticky = scrollTop > 0;
+
+      setIsSticky(shouldBeSticky);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <nav className={`bg-${isSticky ? 'blue-950' : 'white'} text-${isSticky ? 'white' : 'blue-950'} sticky top-0 z-50 transition-all duration-300`}>
+      <div className='container mx-auto'>
+        <div className='W-[90%] flex items-center justify-between py-4'>
+
+          {/* Logo */}
+          <div className='flex items-center'>
+            <h1 className='font-bold text-3xl'>Tourest</h1>
           </div>
-          <div className=' h-20 text-xl font-semibold flex flex-col justify-center items-center'>
-            <ul className='flex space-x-12 cursor-pointer  text-blue-950'>
-            <li className='hover:underline'>Home</li>
-            <li className='hover:underline' >Tours</li>
-            <li className='hover:underline' >Blogs</li>
-            <li className='hover:underline' >About Us</li>
-            <li className='hover:underline' >Contact Us</li>
+
+          {/* Navigation Links - Hidden on Small Screens */}
+          <div className='hidden lg:flex '>
+            <ul className='flex space-x-6 text-xl font-semibold'>
+              <li className='hover:underline'>Home</li>
+              <li className='hover:underline'>Tours</li>
+              <li className='hover:underline'>Blogs</li>
+              <li className='hover:underline'>About Us</li>
+              <li className='hover:underline'>Contact Us</li>
             </ul>
           </div>
+
+          {/* Mobile Menu Button (visible on small screens) */}
+          <div className='lg:hidden'>
+            <button
+              onClick={toggleMobileMenu}
+              className={`text-${isSticky ? 'white' : 'blue-950'} font-semibold focus:outline-none`}
+            >
+              {isMobileMenuOpen ? 'Close' : 'Menu'}
+            </button>
+          </div>
+
+          {/* Mobile Menu (visible on small screens when toggled) */}
+          {isMobileMenuOpen && (
+            <div className={`lg:hidden absolute top-0 right-0 bg-${isSticky ? 'blue-950' : 'white'} text-${isSticky ? 'white' : 'blue-950'} w-64 h-64 text-center transition-transform transform translate-x-0 py-4`}>
+              <button
+                onClick={closeMobileMenu}
+                className={`absolute top-2 right-4 text-${isSticky ? 'white' : 'red-600'}`}
+              >
+                X
+              </button>
+              <h1 className='py-4 font-semibold'>Menu</h1>
+              <ul className='py-8'>
+                <li className='hover:underline'>Home</li>
+                <li className='hover:underline'>Tours</li>
+                <li className='hover:underline'>Blogs</li>
+                <li className='hover:underline'>About Us</li>
+                <li className='hover:underline'>Contact Us</li>
+              </ul>
+            </div>
+          )}
 
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
