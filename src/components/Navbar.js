@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <nav className={`bg-${isSticky ? 'blue-950' : 'white'} text-${isSticky ? 'white' : 'blue-950'} sticky top-0 z-50`}>
       <div className='2xlcontainer mx-auto'>
-        <div className='W-[90%] px-8 flex items-center justify-between py-4'>
+        <div className='W-[90%] px-8  flex items-center justify-between py-4'>
 
           {/* Logo */}
           <div className='flex items-center'>
@@ -39,7 +39,7 @@ const Navbar = () => {
 
           {/* Navigation Links - Hidden on Small Screens */}
           <div className='hidden lg:flex '>
-            <ul className='flex space-x-6 text-xl font-semibold'>
+            <ul className='flex space-x-4 text-xl font-semibold'>
               <li className='hover:underline'>Home</li>
               <li className='hover:underline'>Tours</li>
               <li className='hover:underline'>Blogs</li>
@@ -67,7 +67,7 @@ const Navbar = () => {
               >
                 X
               </button>
-              <ul className='py-8'>
+              <ul className='py-8 '>
                 <li className='hover:underline'>Home</li>
                 <li className='hover:underline'>Tours</li>
                 <li className='hover:underline'>Blogs</li>
